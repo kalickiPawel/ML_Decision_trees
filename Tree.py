@@ -173,7 +173,9 @@ class Tree(BaseEstimator, ClassifierMixin):
 
             if not f.closed:
                 f.close()
-        return 0
+
+        if file == sys.stdout:
+            sys.stdout = open("/dev/stdout", "w")
 
     def predict(self, X):
         y = [None] * X.shape[0]
